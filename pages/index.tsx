@@ -35,8 +35,8 @@ function Home() {
       <main>
         <h1>
           Welcome to{" "}
-          <a href="https://github.com/mirshko/next-web3-boilerplate">
-            next-web3-boilerplate
+          <a href="https://github.com/kodcuserkan/next-et-web3-boilerplate">
+            Next.js - Web3 boilerplate
           </a>
         </h1>
 
