@@ -1,18 +1,19 @@
-import { useWeb3React } from "@web3-react/core";
-import { UserRejectedRequestError } from "@web3-react/injected-connector";
-import { useEffect, useState } from "react";
-import { injected } from "../connectors";
-import useENSName from "../hooks/useENSName";
-import useMetaMaskOnboarding from "../hooks/useMetaMaskOnboarding";
-import { formatEtherscanLink, shortenHex } from "../util";
+import { useWeb3React } from '@web3-react/core';
+import { UserRejectedRequestError } from '@web3-react/injected-connector';
+import { useEffect, useState } from 'react';
+import { injected } from '../connectors';
+import useENSName from '../hooks/useENSName';
+import useMetaMaskOnboarding from '../hooks/useMetaMaskOnboarding';
+import { formatEtherscanLink, shortenHex } from '../util';
 
 type AccountProps = {
   triedToEagerConnect: boolean;
 };
 
-const Account = ({ triedToEagerConnect }: AccountProps) => {
-  const { active, error, activate, chainId, account, setError } =
-    useWeb3React();
+function Account({ triedToEagerConnect }: AccountProps) {
+  const {
+    active, error, activate, chainId, account, setError,
+  } = useWeb3React();
 
   const {
     isMetaMaskInstalled,
@@ -40,7 +41,7 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
     return null;
   }
 
-  if (typeof account !== "string") {
+  if (typeof account !== 'string') {
     return (
       <div>
         {isWeb3Available ? (
@@ -59,7 +60,7 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
               });
             }}
           >
-            {isMetaMaskInstalled ? "Connect to MetaMask" : "Connect to Wallet"}
+            {isMetaMaskInstalled ? 'Connect to MetaMask' : 'Connect to Wallet'}
           </button>
         ) : (
           <button onClick={startOnboarding}>Install Metamask</button>
@@ -71,14 +72,14 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
   return (
     <a
       {...{
-        href: formatEtherscanLink("Account", [chainId, account]),
-        target: "_blank",
-        rel: "noopener noreferrer",
+        href: formatEtherscanLink('Account', [chainId, account]),
+        target: '_blank',
+        rel: 'noopener noreferrer',
       }}
     >
       {ENSName || `${shortenHex(account, 4)}`}
     </a>
   );
-};
+}
 
 export default Account;
